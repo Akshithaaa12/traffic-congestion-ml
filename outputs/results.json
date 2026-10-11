@@ -1,0 +1,426 @@
+{
+  "data": {
+    "rows_raw": 48120,
+    "rows_model": 46776,
+    "period": [
+      "2015-11-01 00:00:00",
+      "2017-06-30 23:00:00"
+    ],
+    "junctions": 4
+  },
+  "clustering": {
+    "kmeans": {
+      "k": 3,
+      "silhouette": 0.506,
+      "davies_bouldin": 0.845
+    },
+    "dbscan": {
+      "eps": 0.617,
+      "min_samples": 5,
+      "n_clusters": 3,
+      "noise_points": 20,
+      "silhouette_excl_noise": 0.032
+    },
+    "pca_explained_var": [
+      0.752,
+      0.204
+    ],
+    "zone_summary": [
+      {
+        "zone_name": "Free-flow zone",
+        "slots": 347,
+        "mean_vc": 0.454,
+        "p_high": 0.023,
+        "rel_volume": 0.736
+      },
+      {
+        "zone_name": "Moderate zone",
+        "slots": 160,
+        "mean_vc": 0.673,
+        "p_high": 0.25,
+        "rel_volume": 1.235
+      },
+      {
+        "zone_name": "Hotspot zone",
+        "slots": 165,
+        "mean_vc": 0.858,
+        "p_high": 0.671,
+        "rel_volume": 1.327
+      }
+    ],
+    "zone_by_junction": [
+      {
+        "Junction": 1,
+        "Free-flow zone": 96,
+        "Moderate zone": 0,
+        "Hotspot zone": 72
+      },
+      {
+        "Junction": 2,
+        "Free-flow zone": 90,
+        "Moderate zone": 12,
+        "Hotspot zone": 66
+      },
+      {
+        "Junction": 3,
+        "Free-flow zone": 70,
+        "Moderate zone": 98,
+        "Hotspot zone": 0
+      },
+      {
+        "Junction": 4,
+        "Free-flow zone": 91,
+        "Moderate zone": 50,
+        "Hotspot zone": 27
+      }
+    ]
+  },
+  "split": {
+    "train_rows": 35068,
+    "val_rows": 2976,
+    "test_rows": 8732,
+    "train": "2015-11-01 .. 2017-02-28",
+    "val": "2017-03",
+    "test": "2017-04-01 .. 2017-06-30",
+    "class_share_test": {
+      "Low": 0.376,
+      "Moderate": 0.352,
+      "High": 0.272
+    }
+  },
+  "features": [
+    "t1_hour_sin",
+    "t1_hour_cos",
+    "t1_dow_sin",
+    "t1_dow_cos",
+    "t1_is_weekend",
+    "t1_is_peak",
+    "month",
+    "vc_t",
+    "vc_lag1",
+    "vc_lag2",
+    "vc_lag3",
+    "vc_lag23",
+    "vc_lag167",
+    "veh_t",
+    "veh_lag1",
+    "veh_lag23",
+    "veh_lag167",
+    "capacity",
+    "vc_roll3_mean",
+    "vc_roll24_mean",
+    "vc_roll24_std",
+    "vc_diff1",
+    "weekend_x_hour",
+    "junction_1",
+    "junction_2",
+    "junction_3",
+    "junction_4",
+    "hist_vc_how",
+    "hotspot_zone"
+  ],
+  "xgb_info": {
+    "xgb_best_n_estimators": 429
+  },
+  "classification": [
+    {
+      "model": "Persistence (naive)",
+      "accuracy": 0.7131,
+      "precision_macro": 0.7163,
+      "recall_macro": 0.7163,
+      "f1_macro": 0.7163,
+      "f1_weighted": 0.7131,
+      "recall_high": 0.7702,
+      "train_seconds": NaN
+    },
+    {
+      "model": "Historical average",
+      "accuracy": 0.709,
+      "precision_macro": 0.7463,
+      "recall_macro": 0.7022,
+      "f1_macro": 0.7127,
+      "f1_weighted": 0.714,
+      "recall_high": 0.6216,
+      "train_seconds": NaN
+    },
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.7739,
+      "precision_macro": 0.7822,
+      "recall_macro": 0.7727,
+      "f1_macro": 0.7766,
+      "f1_weighted": 0.7753,
+      "recall_high": 0.7727,
+      "train_seconds": 1.4512
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.7886,
+      "precision_macro": 0.7968,
+      "recall_macro": 0.7885,
+      "f1_macro": 0.7918,
+      "f1_weighted": 0.7904,
+      "recall_high": 0.7963,
+      "train_seconds": 14.9573
+    },
+    {
+      "model": "XGBoost",
+      "accuracy": 0.7902,
+      "precision_macro": 0.802,
+      "recall_macro": 0.7878,
+      "f1_macro": 0.7931,
+      "f1_weighted": 0.7923,
+      "recall_high": 0.7702,
+      "train_seconds": 10.3206
+    },
+    {
+      "model": "LSTM",
+      "accuracy": 0.7869,
+      "precision_macro": 0.7863,
+      "recall_macro": 0.7911,
+      "f1_macro": 0.7884,
+      "f1_weighted": 0.7861,
+      "recall_high": 0.8548,
+      "train_seconds": 156.8907
+    }
+  ],
+  "classification_report_xgb": {
+    "Low": {
+      "precision": 0.8529319535904673,
+      "recall": 0.8295211954864288,
+      "f1-score": 0.8410636982065554,
+      "support": 3279.0
+    },
+    "Moderate": {
+      "precision": 0.6833381797034022,
+      "recall": 0.7637309067273318,
+      "f1-score": 0.7213014119091468,
+      "support": 3077.0
+    },
+    "High": {
+      "precision": 0.8697718631178707,
+      "recall": 0.7702020202020202,
+      "f1-score": 0.8169642857142857,
+      "support": 2376.0
+    },
+    "accuracy": 0.7901969766376546,
+    "macro avg": {
+      "precision": 0.8020139988039133,
+      "recall": 0.7878180408052603,
+      "f1-score": 0.7931097986099959,
+      "support": 8732.0
+    },
+    "weighted avg": {
+      "precision": 0.7977523364107388,
+      "recall": 0.7901969766376546,
+      "f1-score": 0.7923041060147599,
+      "support": 8732.0
+    }
+  },
+  "per_junction_xgb": [
+    {
+      "Junction": 1,
+      "accuracy": 0.912,
+      "f1_macro": 0.912,
+      "persistence_f1_macro": 0.821
+    },
+    {
+      "Junction": 2,
+      "accuracy": 0.821,
+      "f1_macro": 0.825,
+      "persistence_f1_macro": 0.762
+    },
+    {
+      "Junction": 3,
+      "accuracy": 0.814,
+      "f1_macro": 0.781,
+      "persistence_f1_macro": 0.722
+    },
+    {
+      "Junction": 4,
+      "accuracy": 0.613,
+      "f1_macro": 0.601,
+      "persistence_f1_macro": 0.516
+    }
+  ],
+  "xgb_accuracy_by_hour": {
+    "0": 0.725,
+    "1": 0.791,
+    "2": 0.863,
+    "3": 0.865,
+    "4": 0.912,
+    "5": 0.953,
+    "6": 0.898,
+    "7": 0.832,
+    "8": 0.813,
+    "9": 0.799,
+    "10": 0.681,
+    "11": 0.673,
+    "12": 0.764,
+    "13": 0.712,
+    "14": 0.775,
+    "15": 0.777,
+    "16": 0.745,
+    "17": 0.758,
+    "18": 0.775,
+    "19": 0.78,
+    "20": 0.777,
+    "21": 0.772,
+    "22": 0.775,
+    "23": 0.747
+  },
+  "regression": [
+    {
+      "model": "Persistence (naive)",
+      "RMSE": 5.9491,
+      "MAE": 3.9149,
+      "MAPE_%": 22.3442
+    },
+    {
+      "model": "Random Forest",
+      "RMSE": 4.8253,
+      "MAE": 2.8784,
+      "MAPE_%": 17.9304
+    },
+    {
+      "model": "XGBoost",
+      "RMSE": 4.832,
+      "MAE": 2.8947,
+      "MAPE_%": 17.0528
+    }
+  ],
+  "shap_top10": [
+    {
+      "feature": "vc_t",
+      "mean_abs_shap_all": 0.6927000284194946,
+      "mean_abs_shap_high": 0.8824999928474426,
+      "share_%": 22.425600051879883
+    },
+    {
+      "feature": "hist_vc_how",
+      "mean_abs_shap_all": 0.576200008392334,
+      "mean_abs_shap_high": 0.6922000050544739,
+      "share_%": 18.65489959716797
+    },
+    {
+      "feature": "vc_roll3_mean",
+      "mean_abs_shap_all": 0.24560000002384186,
+      "mean_abs_shap_high": 0.23819999396800995,
+      "share_%": 7.9506001472473145
+    },
+    {
+      "feature": "vc_roll24_mean",
+      "mean_abs_shap_all": 0.19140000641345978,
+      "mean_abs_shap_high": 0.24250000715255737,
+      "share_%": 6.197000026702881
+    },
+    {
+      "feature": "capacity",
+      "mean_abs_shap_all": 0.17649999260902405,
+      "mean_abs_shap_high": 0.28139999508857727,
+      "share_%": 5.715700149536133
+    },
+    {
+      "feature": "hotspot_zone",
+      "mean_abs_shap_all": 0.16930000483989716,
+      "mean_abs_shap_high": 0.3450999855995178,
+      "share_%": 5.482600212097168
+    },
+    {
+      "feature": "t1_hour_cos",
+      "mean_abs_shap_all": 0.13429999351501465,
+      "mean_abs_shap_high": 0.16949999332427979,
+      "share_%": 4.346799850463867
+    },
+    {
+      "feature": "vc_lag23",
+      "mean_abs_shap_all": 0.11060000211000443,
+      "mean_abs_shap_high": 0.08049999922513962,
+      "share_%": 3.5801000595092773
+    },
+    {
+      "feature": "veh_t",
+      "mean_abs_shap_all": 0.10530000180006027,
+      "mean_abs_shap_high": 0.055799998342990875,
+      "share_%": 3.4096999168395996
+    },
+    {
+      "feature": "vc_lag1",
+      "mean_abs_shap_all": 0.0812000036239624,
+      "mean_abs_shap_high": 0.11620000004768372,
+      "share_%": 2.629499912261963
+    }
+  ],
+  "routing": {
+    "historical_avg": {
+      "mean_saving_%": 0.3,
+      "median_saving_%": 0.0,
+      "p90_saving_%": 0.0,
+      "trips_faster_%": 9.2,
+      "trips_slower_%": 7.4,
+      "mean_minutes_saved": 0.61
+    },
+    "ml_predicted": {
+      "mean_saving_%": 1.49,
+      "median_saving_%": 0.0,
+      "p90_saving_%": 2.96,
+      "trips_faster_%": 10.7,
+      "trips_slower_%": 5.6,
+      "mean_minutes_saved": 1.39
+    },
+    "oracle_actual": {
+      "mean_saving_%": 2.25,
+      "median_saving_%": 0.0,
+      "p90_saving_%": 7.34,
+      "trips_faster_%": 15.0,
+      "trips_slower_%": 0.0,
+      "mean_minutes_saved": 1.89
+    },
+    "ml_when_route_changes": {
+      "share_of_trips_%": 16.3,
+      "mean_saving_%": 9.11
+    },
+    "ml_share_of_oracle_gain_%": 73.3,
+    "n_trips": 126000,
+    "n_hours": 300,
+    "ml_peak_hours_mean_saving_%": 1.84,
+    "ml_offpeak_mean_saving_%": 1.38,
+    "graph": {
+      "nodes": 21,
+      "edges": 33,
+      "total_km": 168.9
+    }
+  },
+  "route_example": {
+    "origin": "Nagawara",
+    "dest": "Domlur",
+    "time": "2017-05-25 19:00:00",
+    "shortest_path": [
+      "Nagawara",
+      "Tin Factory",
+      "Indiranagar",
+      "Domlur"
+    ],
+    "ml_path": [
+      "Nagawara",
+      "Hebbal",
+      "Mekhri Circle",
+      "MG Road",
+      "Domlur"
+    ],
+    "shortest_actual_min": 94.7,
+    "ml_actual_min": 70.2
+  },
+  "dijkstra_vs_astar": {
+    "dijkstra": {
+      "queries": 1000,
+      "seconds": 0.067,
+      "total_cost": 40639.083
+    },
+    "astar": {
+      "queries": 1000,
+      "seconds": 0.072,
+      "total_cost": 40639.083
+    }
+  }
+}

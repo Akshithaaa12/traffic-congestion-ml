@@ -1,0 +1,4 @@
+zone_name,slots,mean_vc,p_high,rel_volume
+Free-flow zone,347,0.454,0.023,0.736
+Moderate zone,160,0.673,0.25,1.235
+Hotspot zone,165,0.858,0.671,1.327

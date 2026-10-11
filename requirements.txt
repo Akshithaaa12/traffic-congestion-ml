@@ -1,0 +1,14 @@
+pandas>=1.5
+numpy>=1.23
+scikit-learn>=1.2
+xgboost>=1.7
+shap>=0.42
+torch>=2.0
+networkx>=3.0
+matplotlib>=3.6
+seaborn>=0.12
+plotly>=5.15
+streamlit>=1.30
+joblib
+jupyter
+nbformat

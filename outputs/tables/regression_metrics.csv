@@ -1,0 +1,4 @@
+model,RMSE,MAE,MAPE_%
+Persistence (naive),5.9491,3.9149,22.3442
+Random Forest,4.8253,2.8784,17.9304
+XGBoost,4.832,2.8947,17.0528
